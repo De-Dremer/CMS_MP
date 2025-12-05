@@ -18,17 +18,6 @@ typedef struct Citizen {
 } Citizen;
 
 
-typedef struct Household {
-    int household_id;
-    char address[100];
-    int num_members;
-
-    int district_id;
-    char st_name[3];
-
-    struct Household* next;
-    Citizen* citizen_var;   
-} Household;
 
 typedef struct District {
     int district_id;
@@ -38,7 +27,7 @@ typedef struct District {
     char st_name[3];
 
     struct District* next;
-    Household* household_var;
+    Citizen* var;
 } District;
 
 typedef struct State {
