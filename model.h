@@ -1,57 +1,50 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-
-typedef struct Citizen {
+typedef struct Citizen
+{
     int citizen_id;
     char name[50];
     int age;
-    char gender[1];
+    char gender; // single character M/F/O
     char occupation[50];
     int income;
 
-    int household_id;
-    int district_id;
-    char st_name[3];
+    int household_id; // not used, but stored
 
-    struct Citizen* next;
+    // for displaying origin
+    char district_name[50];
+    char state_name[50];
+
+    struct Citizen *next;
 } Citizen;
 
-
-
-typedef struct District {
-    int district_id;
+typedef struct District
+{
     char name[50];
-    int population;
-
-    char st_name[3];
-
-    struct District* next;
-    Citizen* var;
+    Citizen *citizens; // linked list of citizens
+    struct District *next;
 } District;
 
-typedef struct State {
-
-    char name[2];
-    int population;
-
-    struct State* next;
-    District* district_var;
+typedef struct State
+{
+    char name[50];
+    District *districts; // linked list of districts
+    struct State *next;
 } State;
 
-typedef struct Country {
-    State* state_var;
-    char name[10];
+typedef struct Country
+{
+    char name[50];
+    State *states;
 } Country;
-
 
 typedef struct BST_NODE
 {
     int citizen_id;
     struct BST_NODE *left;
     struct BST_NODE *right;
-    Citizen* citizen_ptr;
-}BST_NODE;
-
+    Citizen *citizen_ptr;
+} BST_NODE;
 
 #endif
