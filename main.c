@@ -3,19 +3,17 @@
 #include <string.h>
 #include "model.h"
 
-// global BST root
 BST_NODE *bst_root = NULL;
 
 int main()
 {
-    // Allocate and initialize country
     Country country;
     strcpy(country.name, "INDIA");
     country.states = NULL;
 
     int ch;
 
-    for (;;)
+    while (1)
     {
         printf("\n===== CENSUS MANAGEMENT SYSTEM =====\n");
         printf("1. Enter Details\n");
@@ -28,16 +26,12 @@ int main()
         {
         case 1:
         {
-            printf("\n=== ADD COMPLETE ENTRY ===\n");
-
-            /* STEP 1: ENTER STATE */
             char state_name[3];
             printf("Enter State Code (2 letters): ");
             scanf("%s", state_name);
 
-            State *s = get_state(country, state_name);
+            State *s = get_state(&country, state_name);
 
-            /* STEP 2: ENTER DISTRICT */
             int district_id;
             char district_name[50];
 
@@ -48,7 +42,6 @@ int main()
 
             District *d = get_district(s, district_name);
 
-            /* STEP 3: ENTER CITIZEN DETAILS */
             int citizen_id;
             char citizen_name[50];
             int age, income;
@@ -73,7 +66,6 @@ int main()
             printf("Enter Income: ");
             scanf("%d", &income);
 
-            /* STEP 4: ADD CITIZEN */
             Citizen *c = add_citizen(
                 s,
                 d,
@@ -86,12 +78,9 @@ int main()
 
             if (c)
             {
-                printf("✓ Citizen Added Successfully!\n");
-
-                /* STEP 5: INSERT INTO BST */
+                printf("Citizen Added Successfully!\n");
                 bst_root = bst_insert(bst_root, c);
             }
-
             break;
         }
 
@@ -101,13 +90,21 @@ int main()
             printf("Enter Citizen ID to search: ");
             scanf("%d", &cid);
 
-            Citizen *res = bst_search(bst_root, cid);
+            BST_NODE *node = bst_search(bst_root, cid);
 
-            if (res)
-                printf("FOUND: %s (Age %d)\n", res->name, res->age);
+            if (node)
+            {
+                printf("\n--- CITIZEN FOUND ---\n");
+                printf("Name     : %s\n", node->citizen_ptr->name);
+                printf("Age      : %d\n", node->citizen_ptr->age);
+                printf("Gender   : %c\n", node->citizen_ptr->gender);
+                printf("State    : %s\n", node->citizen_ptr->state_name);
+                printf("District : %s\n", node->citizen_ptr->district_name);
+            }
             else
+            {
                 printf("Not Found.\n");
-
+            }
             break;
         }
 

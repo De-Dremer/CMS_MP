@@ -6,13 +6,12 @@ typedef struct Citizen
     int citizen_id;
     char name[50];
     int age;
-    char gender; // single character M/F/O
+    char gender;
     char occupation[50];
     int income;
 
-    int household_id; // not used, but stored
+    int household_id;
 
-    // for displaying origin
     char district_name[50];
     char state_name[50];
 
@@ -22,14 +21,14 @@ typedef struct Citizen
 typedef struct District
 {
     char name[50];
-    Citizen *citizens; // linked list of citizens
+    Citizen *citizens;
     struct District *next;
 } District;
 
 typedef struct State
 {
     char name[50];
-    District *districts; // linked list of districts
+    District *districts;
     struct State *next;
 } State;
 
@@ -46,5 +45,16 @@ typedef struct BST_NODE
     struct BST_NODE *right;
     Citizen *citizen_ptr;
 } BST_NODE;
+
+State *get_state(Country *country, char *state_name);
+District *get_district(State *state, const char *district_name);
+
+Citizen *add_citizen(State *state, District *district,
+                     int id, char *name, int age,
+                     char gender, int sal, char *occ);
+
+BST_NODE *getnode();
+BST_NODE *bst_insert(BST_NODE *root, Citizen *cit);
+BST_NODE *bst_search(BST_NODE *root, int id);
 
 #endif
