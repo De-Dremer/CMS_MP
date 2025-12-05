@@ -12,7 +12,7 @@ typedef struct Citizen {
 
     int household_id;
     int district_id;
-    int state_id;
+    char st_name[3];
 
     struct Citizen* next;
 } Citizen;
@@ -24,7 +24,7 @@ typedef struct Household {
     int num_members;
 
     int district_id;
-    int state_id;
+    char st_name[3];
 
     struct Household* next;
     Citizen* citizen_var;   
@@ -35,7 +35,7 @@ typedef struct District {
     char name[50];
     int population;
 
-    int state_id;
+    char st_name[3];
 
     struct District* next;
     Household* household_var;
