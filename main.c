@@ -9,9 +9,9 @@ BST_NODE *bst_root = NULL;
 int main()
 {
     // Allocate and initialize country
-    Country *country = (Country *)malloc(sizeof(Country));
-    strcpy(country->name, "INDIA");
-    country->states = NULL;
+    Country country;
+    strcpy(country.name, "INDIA");
+    country.states = NULL;
 
     int ch;
 
