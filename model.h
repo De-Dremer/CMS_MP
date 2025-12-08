@@ -81,7 +81,15 @@ BST_NODE *getnode();
 BST_NODE *bst_insert(BST_NODE *root, Citizen *cit);
 BST_NODE *bst_search(BST_NODE *root, int id);
 
+
 /* Stats function */
 ReportStats generate_report(Country *country);
+
+/* FREE MEMORY*/
+void free_hierarchy(Country *country);
+void free_bst(BST_NODE *root);
+void free_all(Country *country, BST_NODE *root);
+
+
 
 #endif

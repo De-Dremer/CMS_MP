@@ -21,7 +21,7 @@ State *get_state(Country *country, char *state_name)
     s->next = country->states;
     country->states = s;
 
-    printf("New state created: %s\n", state_name);
+    //printf("New state created: %s\n", state_name);
     return s;
 }
 
@@ -43,7 +43,7 @@ District *get_district(State *state, const char *district_name)
     d->next = state->districts;
     state->districts = d;
 
-    printf("New district created: %s\n", district_name);
+    //printf("New district created: %s\n", district_name);
     return d;
 }
 
@@ -85,4 +85,52 @@ Citizen *add_citizen(State *state, District *district,
 
     printf("Citizen added: %s (ID: %d)\n", name, id);
     return c;
+}
+
+/*Memory deallocation*/
+/* free citizens, districts and states */
+void free_hierarchy(Country *country)
+{
+    State *s = country->states, *s_tmp;
+    District *d, *d_tmp;
+    Citizen *c, *c_tmp;
+
+    while (s)
+    {
+        d = s->districts;
+        while (d)
+        {
+            c = d->citizens;
+            while (c)
+            {
+                c_tmp = c->next;
+                free(c);
+                c = c_tmp;
+            }
+            d_tmp = d->next;
+            free(d);
+            d = d_tmp;
+        }
+        s_tmp = s->next;
+        free(s);
+        s = s_tmp;
+    }
+}
+
+/* free BST nodes */
+void free_bst(BST_NODE *root)
+{
+    if (!root)
+        return;
+
+    free_bst(root->left);
+    free_bst(root->right);
+    free(root);
+}
+
+/* call other 2 functions */
+void free_all(Country *country, BST_NODE *root)
+{
+    free_hierarchy(country);
+    free_bst(root);
 }

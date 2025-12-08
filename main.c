@@ -117,18 +117,20 @@ int main()
 
             printf("\n--- COUNT SECTION ---\n");
             printf("Children Count (<18): %d\n", rep.children_count);
-            printf("Adult Count (18–35): %d\n", rep.adult_count);
+            printf("Adult Count (18 - 35): %d\n", rep.adult_count);
             printf("Senior Count (50+): %d\n", rep.senior_count);
 
             printf("\n--- PERCENTAGE SECTION ---\n");
             printf("Children Percentage (<18): %.2f%%\n", rep.children_percent);
-            printf("Adult Percentage (18–45): %.2f%%\n", rep.adult_percent);
+            printf("Adult Percentage (18 - 354): %.2f%%\n", rep.adult_percent);
             printf("Senior Percentage (>45): %.2f%%\n", rep.senior_percent);
 
             break;
         }
 
         case 4:
+            printf("Freeing memory\n");
+            free_all(&country, bst_root);
             printf("Exiting...\n");
             return 0;
 
