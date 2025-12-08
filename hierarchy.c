@@ -3,17 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-BST_NODE *getnode()
-{
-    BST_NODE *temp = (BST_NODE *)malloc(sizeof(BST_NODE));
-    if (temp == NULL)
-    {
-        printf("No memory\n");
-        return NULL;
-    }
-    return temp;
-}
-
 State *get_state(Country *country, char *state_name)
 {
     State *temp = country->states;
@@ -63,11 +52,12 @@ Citizen *add_citizen(State *state, District *district,
                      char gender, int sal, char *occ)
 {
     Citizen *temp = district->citizens;
+
     while (temp != NULL)
     {
         if (temp->citizen_id == id)
         {
-            printf("❌ Citizen ID %d already exists! Duplicate not allowed.\n", id);
+            printf(" Citizen ID %d already exists! Duplicate not allowed.\n", id);
             return NULL;
         }
         temp = temp->next;
@@ -95,48 +85,4 @@ Citizen *add_citizen(State *state, District *district,
 
     printf("Citizen added: %s (ID: %d)\n", name, id);
     return c;
-}
-
-BST_NODE *bst_insert(BST_NODE *root, Citizen *cit)
-{
-    BST_NODE *new = getnode();
-    new->citizen_id = cit->citizen_id;
-    new->citizen_ptr = cit;
-    new->left = new->right = NULL;
-
-    if (root == NULL)
-        return new;
-
-    BST_NODE *cur = root;
-    BST_NODE *pre = NULL;
-
-    while (cur != NULL)
-    {
-        pre = cur;
-        if (cit->citizen_id < cur->citizen_id)
-            cur = cur->left;
-        else
-            cur = cur->right;
-    }
-
-    if (cit->citizen_id < pre->citizen_id)
-        pre->left = new;
-    else
-        pre->right = new;
-
-    return root;
-}
-
-BST_NODE *bst_search(BST_NODE *root, int id)
-{
-    if (root == NULL)
-        return NULL;
-
-    if (id == root->citizen_id)
-        return root;
-
-    if (id < root->citizen_id)
-        return bst_search(root->left, id);
-
-    return bst_search(root->right, id);
 }

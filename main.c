@@ -18,7 +18,8 @@ int main()
         printf("\n===== CENSUS MANAGEMENT SYSTEM =====\n");
         printf("1. Enter Details\n");
         printf("2. Search & Display by Citizen ID\n");
-        printf("3. Exit\n");
+        printf("3. Generate Report\n");
+        printf("4. Exit\n");
         printf("Enter your choice : ");
         scanf("%d", &ch);
 
@@ -26,7 +27,7 @@ int main()
         {
         case 1:
         {
-            char state_name[3];
+            char state_name[10];
             printf("Enter State Code (2 letters): ");
             scanf("%s", state_name);
 
@@ -67,8 +68,7 @@ int main()
             scanf("%d", &income);
 
             Citizen *c = add_citizen(
-                s,
-                d,
+                s, d,
                 citizen_id,
                 citizen_name,
                 age,
@@ -92,7 +92,7 @@ int main()
 
             BST_NODE *node = bst_search(bst_root, cid);
 
-            if (node)
+            if (node && node->citizen_ptr)
             {
                 printf("\n--- CITIZEN FOUND ---\n");
                 printf("Name     : %s\n", node->citizen_ptr->name);
@@ -109,6 +109,26 @@ int main()
         }
 
         case 3:
+        {
+            ReportStats rep = generate_report(&country);
+
+            printf("\n===== CENSUS REPORT =====\n");
+            printf("Total Citizens: %d\n", rep.total);
+
+            printf("\n--- COUNT SECTION ---\n");
+            printf("Children Count (<18): %d\n", rep.children_count);
+            printf("Adult Count (18–35): %d\n", rep.adult_count);
+            printf("Senior Count (50+): %d\n", rep.senior_count);
+
+            printf("\n--- PERCENTAGE SECTION ---\n");
+            printf("Children Percentage (<18): %.2f%%\n", rep.children_percent);
+            printf("Adult Percentage (18–45): %.2f%%\n", rep.adult_percent);
+            printf("Senior Percentage (>45): %.2f%%\n", rep.senior_percent);
+
+            break;
+        }
+
+        case 4:
             printf("Exiting...\n");
             return 0;
 
