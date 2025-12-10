@@ -1,126 +1,64 @@
-📘 Census Data Management & Population Analytics
-Mini Project — C Program (Console-Based)
-📌 Overview
-This project is a C-based census management system that stores population data in a hierarchical format:
+**CENSUS MANAGEMENT AND POPULATION ANALYTICS**  
+Mini Project – C Program  
 
-Country → State → District → Citizen
-It uses structures + linked lists for storing data and a Binary Search Tree (BST) for fast citizen lookup using Citizen ID.
 
-The system supports:
 
-Add State, District, Citizen
+**Overview**  
+This project is a C-based census management system that organizes population data in a hierarchical structure:  
+&nbsp;&nbsp;&nbsp;&nbsp;_Country → State → District → Citizen_  
 
-Search citizen by ID (via BST)
+The system uses:  
+- **Structures + Linked Lists** for hierarchical data  
+- **Binary Search Tree (BST)** for fast citizen lookup  
+- **Menu-driven console interface**  
 
-Maintain population counts
 
-Simple text‑based console menu
 
-📁 Project Structure
+**Features Implemented**  
+- Add complete entry (State → District → Citizen)  
+- Automatically create State/District if they don’t exist  
+- Insert citizen into District linked list  
+- Insert citizen ID into BST for fast searching  
+- Search citizen by ID  
+- Display all citizen details  
+- Basic input validations (no duplicate IDs)  
+
+
+**Project Structure**  
 census_project/
-├── model.h          // All structure definitions
-├── hierarchy.c      // State/District/Citizen linked-list functions
-├── search.c         // BST insert/search
-├── main.c           // Menu, input handling, workflow control
-├── Makefile         // Build rules
-└── README.md        // Documentation
-🧩 Data Structures
-Country
-name
 
-pointer to list of states
+├── model.h // Structure definitions
 
-State
-name
+├── hierarchy.c // Linked list operations
 
-population
+├── search.c // BST functions
 
-linked list of districts
+├── main.c // Menu + integration
 
-District
-district_id
+├── Makefile // Build instructions
 
-name
+└── README.md // Documentation
 
-population
 
-linked list of citizens
-
-Citizen
-citizen_id
-
-name
-
-age
-
-gender
-
-occupation
-
-income
-
-next citizen pointer
-
-BST Node
-Used for searching citizens efficiently by ID.
-
-⚙️ Features Implemented
-✔ Add Complete Entry
-User can enter:
-
-State
-
-District
-
-Citizen details (ID, name, age, gender, occupation, income)
-
-System automatically:
-
-Creates state/district if not found
-
-Inserts citizen into district list
-
-Inserts citizen ID into BST
-
-✔ Search by Citizen ID
-Fast lookup using BST.
-
-✔ Display Citizen Details
-✔ Input Validations
-No duplicate IDs
-
-Basic error checking
-
-Dynamic memory usage
-
-▶️ How to Compile and Run
-Using Makefile
-make
-./census
-Without Makefile
+**How to Compile and Run**
+Makefile
+```bash
 gcc main.c hierarchy.c search.c -o census
 ./census
-🖥 Sample Main Menu
-===== CENSUS MANAGEMENT SYSTEM =====
-1. Enter details
-2. Search and display details
-3. Exit
-🧪 Recommended Test Cases
-Test	Description
-1	Add multiple citizens across states/districts
-2	Add a citizen with same ID → should show error
-3	Search existing citizen ID
-4	Search non-existing ID
-5	Add 20+ entries, test BST behavior
-👥 Team Roles
-Member	Work Assigned
-Member 1	model.h + hierarchy.c
-Member 2	search.c (BST)
-Member 3	history / undo (optional)
-Member 4	main.c + Makefile + README
-📎 Notes
-Household feature removed (household ID stored only as a simple integer field).
+```
 
-No file handling added yet — optional future upgrade.
 
-Code kept modular and compatible with GCC.
+| Test No. | Menu / Action                         | Description / Expected Behavior                        |
+|:--------:|:------------------------------------:|:------------------------------------------------------:|
+| 1        | Enter Details                         | Add new State, District, and Citizen entry            |
+| 2        | Search & Display by Citizen ID        | Search for a citizen using ID and display details     |
+| 3        | Generate Report                        | Generate a population / census report                 |
+| 4        | Exit                                   | Exit the program                                      |
+| 5        | Add multiple citizens across states/districts | Add multiple citizens in different states/districts |
+| 6        | Add a citizen with duplicate ID       | Should show an error (duplicate ID not allowed)       |
+| 7        | Search an existing citizen            | Verify BST search returns correct citizen details     |
+| 8        | Search a non-existing citizen         | Should indicate citizen not found                     |
+| 9        | Add 20+ entries                        | Test BST performance and data structure handling     |
+
+
+
