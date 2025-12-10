@@ -29,10 +29,6 @@ ReportStats generate_report(Country *country)
             {
                 int age = c->age;
 
-                /* ====================== */
-                /*  OFFICIAL COUNT LOGIC  */
-                
-
                 if (age < 18)
                     r.children_count++;
 
@@ -41,12 +37,6 @@ ReportStats generate_report(Country *country)
 
                 else if (age >= 50)
                     r.senior_count++;
-
-                /* Ignored ages 36–49 for COUNT */
-
-                /* =========================== */
-                /*  PERCENTAGE LOGIC (100%)    */
-                
 
                 if (age < 18)
                     percent_children++;
@@ -67,11 +57,6 @@ ReportStats generate_report(Country *country)
 
         s = s->next;
     }
-
-    /* ========================= */
-    /*  PERCENTAGE CALCULATION   */
-    
-
     if (r.total == 0)
     {
         r.children_percent = 0;

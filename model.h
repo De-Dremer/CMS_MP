@@ -46,10 +46,6 @@ typedef struct BST_NODE
     Citizen *citizen_ptr;
 } BST_NODE;
 
-/* ============================= */
-/* REPORT STRUCT (MUST COME FIRST) */
-/* ============================= */
-
 typedef struct ReportStats
 {
     int total;
@@ -64,10 +60,6 @@ typedef struct ReportStats
 
 } ReportStats;
 
-/* ============================= */
-/* FUNCTION PROTOTYPES */
-/* ============================= */
-
 /* Hierarchy functions */
 State *get_state(Country *country, char *state_name);
 District *get_district(State *state, const char *district_name);
@@ -81,7 +73,6 @@ BST_NODE *getnode();
 BST_NODE *bst_insert(BST_NODE *root, Citizen *cit);
 BST_NODE *bst_search(BST_NODE *root, int id);
 
-
 /* Stats function */
 ReportStats generate_report(Country *country);
 
@@ -89,7 +80,5 @@ ReportStats generate_report(Country *country);
 void free_hierarchy(Country *country);
 void free_bst(BST_NODE *root);
 void free_all(Country *country, BST_NODE *root);
-
-
 
 #endif
