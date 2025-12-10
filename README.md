@@ -5,6 +5,7 @@ ___
 
 
 <h2>Overview</h2>
+
 This project is a C-based census management system that organizes population data in a hierarchical structure: 
 
 ```
@@ -18,6 +19,7 @@ The system uses:
 ___
 
 <h2>Features Implemented</h2>
+
 - Add complete entry (State → District → Citizen)  
 - Automatically create State/District if they don’t exist  
 - Insert citizen into District linked list  
