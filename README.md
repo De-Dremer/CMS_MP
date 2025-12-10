@@ -1,18 +1,20 @@
 **CENSUS MANAGEMENT AND POPULATION ANALYTICS**  
 Mini Project – C Program  
 
+___
 
 
 **Overview**  
 This project is a C-based census management system that organizes population data in a hierarchical structure:  
-&nbsp;&nbsp;&nbsp;&nbsp;_Country → State → District → Citizen_  
+```
+Country → State → District → Citizen
+```
 
 The system uses:  
 - **Structures + Linked Lists** for hierarchical data  
 - **Binary Search Tree (BST)** for fast citizen lookup  
 - **Menu-driven console interface**  
-
-
+___
 
 **Features Implemented**  
 - Add complete entry (State → District → Citizen)  
@@ -23,7 +25,7 @@ The system uses:
 - Display all citizen details  
 - Basic input validations (no duplicate IDs)  
 
-
+___
 **Project Structure**  
 census_project/
 
@@ -39,6 +41,7 @@ census_project/
 
 └── README.md // Documentation
 
+___
 
 **How to Compile and Run**
 Makefile
@@ -46,6 +49,7 @@ Makefile
 gcc main.c hierarchy.c search.c -o census
 ./census
 ```
+___
 
 
 | Test No. | Menu / Action                         | Description / Expected Behavior                        |
