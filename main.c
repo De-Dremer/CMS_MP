@@ -30,6 +30,8 @@ int main()
             char state_name[10];
             printf("Enter State Code (2 letters): ");
             scanf("%s", state_name);
+            while (getchar() != '\n')
+                ;
 
             State *s = get_state(&country, state_name);
 
@@ -38,8 +40,12 @@ int main()
 
             printf("Enter District ID: ");
             scanf("%d", &district_id);
+            while (getchar() != '\n')
+                ;
+
             printf("Enter District Name: ");
-            scanf("%s", district_name);
+            fgets(district_name, sizeof(district_name), stdin);
+            district_name[strcspn(district_name, "\n")] = 0;
 
             District *d = get_district(s, district_name);
 
@@ -51,21 +57,31 @@ int main()
 
             printf("Enter Citizen ID: ");
             scanf("%d", &citizen_id);
+            while (getchar() != '\n')
+                ;
 
             printf("Enter Citizen Name: ");
-            scanf("%s", citizen_name);
+            fgets(citizen_name, sizeof(citizen_name), stdin);
+            citizen_name[strcspn(citizen_name, "\n")] = 0;
 
             printf("Enter Age: ");
             scanf("%d", &age);
+            while (getchar() != '\n')
+                ;
 
             printf("Enter Gender (M/F/O): ");
             scanf(" %c", &gender);
+            while (getchar() != '\n')
+                ;
 
             printf("Enter Occupation: ");
-            scanf("%s", occupation);
+            fgets(occupation, sizeof(occupation), stdin);
+            occupation[strcspn(occupation, "\n")] = 0;
 
             printf("Enter Income: ");
             scanf("%d", &income);
+            while (getchar() != '\n')
+                ;
 
             Citizen *c = add_citizen(
                 s, d,
@@ -95,11 +111,11 @@ int main()
             if (node && node->citizen_ptr)
             {
                 printf("\n--- CITIZEN FOUND ---\n");
-                printf("Name     : %s\n", node->citizen_ptr->name);
-                printf("Age      : %d\n", node->citizen_ptr->age);
-                printf("Gender   : %c\n", node->citizen_ptr->gender);
-                printf("State    : %s\n", node->citizen_ptr->state_name);
-                printf("District : %s\n", node->citizen_ptr->district_name);
+                printf("%-12s: %s\n", "Name", node->citizen_ptr->name);
+                printf("%-12s: %d\n", "Age", node->citizen_ptr->age);
+                printf("%-12s: %c\n", "Gender", node->citizen_ptr->gender);
+                printf("%-12s: %s\n", "State", node->citizen_ptr->state_name);
+                printf("%-12s: %s\n", "District", node->citizen_ptr->district_name);
             }
             else
             {
@@ -113,17 +129,17 @@ int main()
             ReportStats rep = generate_report(&country);
 
             printf("\n===== CENSUS REPORT =====\n");
-            printf("Total Citizens: %d\n", rep.total);
+            printf("%-25s: %d\n", "Total Citizens", rep.total);
 
             printf("\n--- COUNT SECTION ---\n");
-            printf("Children Count (<18): %d\n", rep.children_count);
-            printf("Adult Count (18 - 35): %d\n", rep.adult_count);
-            printf("Senior Count (50+): %d\n", rep.senior_count);
+            printf("%-25s: %d\n", "Children Count (<18)", rep.children_count);
+            printf("%-25s: %d\n", "Adult Count (18 - 35)", rep.adult_count);
+            printf("%-25s: %d\n", "Senior Count (50+)", rep.senior_count);
 
             printf("\n--- PERCENTAGE SECTION ---\n");
-            printf("Children Percentage (<18): %.2f%%\n", rep.children_percent);
-            printf("Adult Percentage (18 - 354): %.2f%%\n", rep.adult_percent);
-            printf("Senior Percentage (>45): %.2f%%\n", rep.senior_percent);
+            printf("%-35s: %.2f%%\n", "Children Percentage (<18)", rep.children_percent);
+            printf("%-35s: %.2f%%\n", "Adult Percentage (18 - 35)", rep.adult_percent);
+            printf("%-35s: %.2f%%\n", "Senior Percentage (>45)", rep.senior_percent);
 
             break;
         }
