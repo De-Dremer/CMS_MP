@@ -26,7 +26,8 @@ ___
 - Insert citizen ID into BST for fast searching  
 - Search citizen by ID  
 - Display all citizen details  
-- Basic input validations (no duplicate IDs)  
+- Basic input validations (no duplicate IDs)
+- Statistics based reoprt generation 
 
 ___
 <h2>Project Structure</h2>
@@ -41,7 +42,9 @@ census_project/
 
 ├── main.c 
 
-├── tree_fun.c 
+├── tree_fun.c
+
+├── stats.c
 
 └── README.md 
 
