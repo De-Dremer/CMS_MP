@@ -27,7 +27,7 @@ ___
 - Search citizen by ID  
 - Display all citizen details  
 - Basic input validations (no duplicate IDs)
-- Statistics based reoprt generation 
+- Statistics based report generation 
 
 ___
 <h2>Project Structure</h2>
